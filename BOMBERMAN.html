@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bomberman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+  <img src="Images/BOMBERMAN_BANNER.png" alt="Bomberman" class="banner">
+    </header>
+    <main id="layout">
+    <div id="gameCol">
+    <div id="hud">
+        <div class="stat score"><div class="txt"><span class="lbl">Puntos</span><b id="hScore">000000</b></div></div>
+        <div class="stat"><div class="txt"><span class="lbl">Nivel</span><b id="hLevel">1</b></div></div>
+        <div class="stat"><i class="ico ico-bomb"></i><div class="txt"><span class="lbl">Bombas</span><b id="hBombs">1</b></div></div>
+        <div class="stat"><i class="ico ico-heart">♥</i><div class="txt"><span class="lbl">Vidas</span><b id="hLives">3</b></div></div>
+        <div class="stat"><i class="ico ico-fire"></i><div class="txt"><span class="lbl">Alcance</span><b id="hRange">2</b></div></div>
+        <div class="stat"><i class="ico ico-enemy"></i><div class="txt"><span class="lbl">Enemigos</span><b id="hEnemies">0</b></div></div>
+    </div>
+    <div id="stage">
+    <canvas id="game" width="600" height="520"></canvas>
+
+    <div id="endScreen" class="end hidden" role="dialog" aria-live="polite" aria-labelledby="endTitle">
+      <div class="end-card">
+        <div id="endSprite" class="end-sprite" aria-hidden="true"></div>
+        <h2 id="endTitle">GAME OVER</h2>
+
+        <div class="end-score">
+          <span class="lbl">Puntos</span>
+          <b id="endScore">000000</b>
+          <p id="endBonus" class="bonus" hidden></p>
+        </div>
+
+        <div class="end-stats">
+          <div><span class="lbl">Nivel</span><b id="endLevel">1</b></div>
+          <div><span class="lbl">Enemigos</span><b id="endEnemies">0</b></div>
+        </div>
+
+        <p id="newRecord" class="record" hidden>¡NUEVO RECORD!</p>
+
+        <div id="saveBox" hidden>
+            <p id="saveSummary"></p>
+            <div class="row">
+                <input id="playerName" type="text" maxlength="12" placeholder="Tu nombre" autocomplete="off">
+                <button id="saveBtn" type="button">Guardar</button>
+            </div>
+        </div>
+
+        <button id="endRestart" type="button">Jugar de nuevo (R)</button>
+      </div>
+    </div>
+    </div>
+    <p class="help"> Mover: flechas o WASD. Bomba: barra espaciadora. Pausa: P. Música: M. Efectos: N. Reiniciar: R. Los ladrillos pueden esconder mejoras: bomba, alcance, velocidad (rayo) y vidas (corazón).</p>
+    <div id="audioBar">
+        <button id="btnPause" type="button">⏸ Pausa (P)</button>
+        <button id="btnMusic" type="button">🎵 Música (M)</button>
+        <button id="btnSfx" type="button">🔊 Efectos (N)</button>
+    </div>
+    <div id="pad">
+        <button data-k="ArrowUp" style="grid-column:2;grid-row:1">▲</button>
+        <button data-k="ArrowLeft" style="grid-column:1;grid-row:2">◀</button>
+        <button data-k="ArrowDown" style="grid-column:2;grid-row:2">▼</button>
+        <button data-k="ArrowRight" style="grid-column:3;grid-row:2">▶</button>
+        <button Class="bomb" data-k=" ">Bomba</button>
+    </div>
+</div>
+    <section id="scoreboard">
+        <h2>Mejores puntuaciones</h2>
+        <div class="tablewrap">
+            <table>
+                <thead><tr><th>#</th><th>Jugador</th><th>Nivel</th><th>Puntos</th><th>Enemigos</th><th>Fecha</th></tr></thead>
+                <tbody id="scoreBody"></tbody>
+            </table>
+        </div>
+        <button id="clearBtn" type="button" class="link">Borrar tabla</button>
+    </section>
+    </main>
+<script src="game.js"></script>
+</body>
+</html>
